@@ -14,7 +14,7 @@ export default function Header() {
         <Link href="/">
           <a className="text-3xl font-bold text-blue-700">faremee</a>
         </Link>
-        <nav className="space-x-6 hidden md:flex">
+        <nav className="space-x-6 flex">
           {tabs.map((tab) => (
             <Link key={tab.href} href={tab.href}>
               <a className="hover:text-blue-600">{tab.label}</a>
