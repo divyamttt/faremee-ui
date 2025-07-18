@@ -113,4 +113,3 @@ export default function FilterSidebar({ service, filters, onFiltersChange }) {
         </>
       )}
 
-Reply **“Next”** to continue with `FlightCard.jsx` and the rest of the components.
