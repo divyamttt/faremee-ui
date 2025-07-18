@@ -15,5 +15,6 @@
     "autoprefixer": "^10.4.0",
     "@heroicons/react": "^2.0.18",
     "@headlessui/react": "^1.7.14"
+    "next-themes": "^0.2.1"
   }
 }
