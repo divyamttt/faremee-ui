@@ -1,3 +1,4 @@
+// components/FilterSidebar.jsx
 import { useState } from "react";
 import { Switch } from "@headlessui/react";
 
@@ -12,6 +13,7 @@ export default function FilterSidebar({ service, filters, onFiltersChange }) {
 
   return (
     <aside className="w-full lg:w-72 space-y-6">
+      {/* Price Range */}
       <div>
         <h3 className="font-semibold mb-2">Price Range</h3>
         <input
@@ -29,6 +31,7 @@ export default function FilterSidebar({ service, filters, onFiltersChange }) {
         </div>
       </div>
 
+      {/* Flights filters */}
       {service === "flights" && (
         <>
           <div>
@@ -71,6 +74,7 @@ export default function FilterSidebar({ service, filters, onFiltersChange }) {
         </>
       )}
 
+      {/* Hotels filters */}
       {service === "hotels" && (
         <>
           <div>
@@ -113,3 +117,91 @@ export default function FilterSidebar({ service, filters, onFiltersChange }) {
         </>
       )}
 
+      {/* Car rentals filters */}
+      {service === "car-rentals" && (
+        <>
+          <div>
+            <h3 className="font-semibold mb-2">Vehicle Class</h3>
+            {["Economy", "Compact", "SUV", "Luxury"].map((vc) => (
+              <label key={vc} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={local.vehicleClasses.includes(vc)}
+                  onChange={(e) => {
+                    const next = e.target.checked
+                      ? [...local.vehicleClasses, vc]
+                      : local.vehicleClasses.filter((x) => x !== vc);
+                    update("vehicleClasses", next);
+                  }}
+                />
+                <span>{vc}</span>
+              </label>
+            ))}
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">Suppliers</h3>
+            {filters.suppliersList.map((sup) => (
+              <label key={sup} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={local.suppliers.includes(sup)}
+                  onChange={(e) => {
+                    const next = e.target.checked
+                      ? [...local.suppliers, sup]
+                      : local.suppliers.filter((x) => x !== sup);
+                    update("suppliers", next);
+                  }}
+                />
+                <span>{sup}</span>
+              </label>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Vacation packages filters */}
+      {service === "vacation-packages" && (
+        <>
+          <div>
+            <h3 className="font-semibold mb-2">Flexible Dates</h3>
+            <div className="flex items-center space-x-2">
+              <Switch
+                checked={local.flexibleDates}
+                onChange={(val) => update("flexibleDates", val)}
+                className={`${
+                  local.flexibleDates ? "bg-blue-600" : "bg-gray-200"
+                } relative inline-flex h-6 w-11 rounded-full transition`}
+              >
+                <span
+                  className={`${
+                    local.flexibleDates ? "translate-x-6" : "translate-x-1"
+                  } inline-block w-4 h-4 transform bg-white rounded-full transition`}
+                />
+              </Switch>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-semibold mb-2">Activity Type</h3>
+            {["Tour", "Cruise", "Adventure", "Relaxation"].map((act) => (
+              <label key={act} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={local.activities.includes(act)}
+                  onChange={(e) => {
+                    const next = e.target.checked
+                      ? [...local.activities, act]
+                      : local.activities.filter((x) => x !== act);
+                    update("activities", next);
+                  }}
+                />
+                <span>{act}</span>
+              </label>
+            ))}
+          </div>
+        </>
+      )}
+    </aside>
+  );
+}
