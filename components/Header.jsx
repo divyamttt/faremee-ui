@@ -1,6 +1,8 @@
+// components/Header.jsx
 import { useState } from "react";
 import Link from "next/link";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
+- import { MenuIcon, XIcon } from "@heroicons/react/outline";
++ import { MenuIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -19,7 +21,8 @@ export default function Header() {
           className="sm:hidden p-2 text-gray-700 dark:text-gray-300"
           onClick={() => setOpen(!open)}
         >
-          {open ? <XIcon className="h-6 w-6"/> : <MenuIcon className="h-6 w-6"/>}
+-         {open ? <XIcon className="h-6 w-6"/> : <MenuIcon className="h-6 w-6"/>}
++         {open ? <XMarkIcon className="h-6 w-6"/> : <MenuIcon className="h-6 w-6"/>}
         </button>
         <nav className={`flex-col sm:flex sm:flex-row ${open ? "flex" : "hidden"} space-y-2 sm:space-y-0 sm:space-x-6`}>
           {tabs.map((t) => (
@@ -30,5 +33,5 @@ export default function Header() {
         </nav>
       </div>
     </header>
-);
+  );
 }
